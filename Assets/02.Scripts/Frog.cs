@@ -16,6 +16,8 @@ public class Frog : MonoBehaviour, IPointerClickHandler
     public float ScoreIncreasedPerSecond;
     public float PerSecondPlus;
 
+    public GameObject plusObject;
+    public TextMeshProUGUI plusText;
 
 
     private void Awake()
@@ -29,12 +31,18 @@ public class Frog : MonoBehaviour, IPointerClickHandler
         ScoreIncreasedPerSecond = PerSecondPlus * Time.deltaTime;
         CurrentScore = CurrentScore + ScoreIncreasedPerSecond;
 
+        plusText.text = "+ " + HitPower;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("프로그 클릭");
 
+        Hit();
+    }
+
+    public void Hit()
+    {
         // 1. 애니메이션 실행
         PlayHitAnimation();
 
@@ -42,6 +50,26 @@ public class Frog : MonoBehaviour, IPointerClickHandler
         StartCoroutine(ScaleUpDown_Coroutine());
 
         CurrentScore += HitPower;
+
+        plusObject.SetActive(false);
+
+        plusObject.transform.position = new Vector3(Random.Range(800,800 +1), Random.Range(300,405 +1), 0);
+
+        plusObject.SetActive(true);
+
+       
+        StartCoroutine(Fly());
+    }
+
+    IEnumerator Fly()
+    {
+        for(int i = 0; i <= 19; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+
+            plusObject.transform.position = new Vector3(plusObject.transform.position.x, plusObject.transform.position.y +2, 0);
+        }
+        plusObject.SetActive(false);
     }
 
     private float _upDurtioan = 0.1f;

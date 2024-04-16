@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,20 +9,24 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour, IPointerClickHandler
 {
     // Shop
-    public int Shop1Prize;
+    public float Shop1Prize;
     public TextMeshProUGUI Shop1Text;
 
-    public int Shop2Prize;
+    public float Shop2Prize;
     public TextMeshProUGUI Shop2Text;
 
     // Amount
     public TextMeshProUGUI Amount1Text;
     public int Amount1;
-    public float Amount1Profit;
+    public float Amount1HitPower;
+    public float Amount1PerSecondPlus;
 
     public TextMeshProUGUI Amount2Text;
     public int Amount2;
-    public float Amount2Profit;
+    public float Amount2HitPower;
+    public float Amount2PerSecondPlus;
+
+    public TextMeshProUGUI AllDamageText;
 
     private Frog _frog;
 
@@ -32,44 +37,40 @@ public class Shop : MonoBehaviour, IPointerClickHandler
     public void Update()
     {
         // Shop
-        Shop1Text.text = "Tire 1: " + Shop1Prize + " $";
-        Shop2Text.text = "Tire 2: " + Shop2Prize + " $";
+        Shop1Text.text = "상점 1: " + Shop1Prize.ToString("F2") + " $";
+        Shop2Text.text = "상점 2: " + Shop2Prize.ToString("F2") + " $";
 
         // Amount
-        Amount1Text.text = "Tire 1: " + Amount1 + " arts $: " + Amount1Profit + "/s";
-        Amount2Text.text = "Tire 2: " + Amount2 + " arts $: " + Amount2Profit + "/s";
+        Amount1Text.text = "업그레이드 수 +" + Amount1 +" "+" 공격력 +" + Amount1HitPower + " "+" 초당 공격 +" + Amount1PerSecondPlus;
+        Amount2Text.text = "업그레이드 수 +" + Amount2 +" "+" 공격력 +" + Amount2HitPower + " "+" 초당 공격 +" + Amount2PerSecondPlus;
+
+        AllDamageText.text = "총 공격력 : " + _frog.HitPower;
     }
     public void Shop1()
     {
         if (_frog.CurrentScore >= Shop1Prize)
         {
             _frog.CurrentScore -= Shop1Prize;
-            Amount1 += 1;
-            Amount1Profit += 1;
-            _frog.PerSecondPlus += 1;
-            Shop1Prize += 25;
+            Amount1 += 1;                // 업그레이드 수
+            Amount1HitPower += 2;        // 이미지 공격
+            Amount1PerSecondPlus += 1;   // 이미지 초당 공격
+            _frog.PerSecondPlus += 1;    // 초당 공격
+            _frog.HitPower += 2;         // 터치 공격
+            Shop1Prize *= 1.5f;
         }
     }
-    public void HitPowerUP1()
-    {
-        _frog.HitPower += 1;
-    }
-
     public void Shop2()
     {
         if (_frog.CurrentScore >= Shop2Prize)
         {
             _frog.CurrentScore -= Shop2Prize;
             Amount2 += 1;
-            Amount2Profit += 5;
-            _frog.PerSecondPlus += 5;
+            Amount2HitPower += 5;
+            Amount2PerSecondPlus += 3;
+            _frog.PerSecondPlus += 3;
+            _frog.HitPower += 5;
             Shop2Prize += 125;
         }
-    }
-
-    public void HitPowerUP2()
-    {
-        _frog.HitPower += 5;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
