@@ -17,12 +17,17 @@ public class Frog : MonoBehaviour, IPointerClickHandler
     public float PerSecondPlus;
 
     public GameObject plusObject;
-    public TextMeshProUGUI plusText;
+    private FeverGauge feverGauge;
+    // public TextMeshProUGUI plusText;
 
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+    }
+    private void Start()
+    {
+        feverGauge = FindObjectOfType<FeverGauge>();
     }
     public void Update()
     {
@@ -31,13 +36,11 @@ public class Frog : MonoBehaviour, IPointerClickHandler
         ScoreIncreasedPerSecond = PerSecondPlus * Time.deltaTime;
         CurrentScore = CurrentScore + ScoreIncreasedPerSecond;
 
-        plusText.text = "+ " + HitPower;
+        //plusText.text = "+ " + HitPower;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("프로그 클릭");
-
         Hit();
     }
 
@@ -51,14 +54,8 @@ public class Frog : MonoBehaviour, IPointerClickHandler
 
         CurrentScore += HitPower;
 
-        plusObject.SetActive(false);
-
-        plusObject.transform.position = new Vector3(Random.Range(800,800 +1), Random.Range(300,405 +1), 0);
-
-        plusObject.SetActive(true);
-
-       
-        StartCoroutine(Fly());
+        Quaternion rotatedRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180f, transform.rotation.eulerAngles.z);
+        Instantiate(plusObject, transform.position, rotatedRotation);
     }
 
     IEnumerator Fly()

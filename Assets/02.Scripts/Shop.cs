@@ -27,6 +27,7 @@ public class Shop : MonoBehaviour, IPointerClickHandler
     public float Amount2PerSecondPlus;
 
     public TextMeshProUGUI AllDamageText;
+    public TextMeshProUGUI AllPerSecondPowerText;
 
     private Frog _frog;
 
@@ -45,6 +46,7 @@ public class Shop : MonoBehaviour, IPointerClickHandler
         Amount2Text.text = "업그레이드 수 +" + Amount2 +" "+" 공격력 +" + Amount2HitPower + " "+" 초당 공격 +" + Amount2PerSecondPlus;
 
         AllDamageText.text = "총 공격력 : " + _frog.HitPower;
+        AllPerSecondPowerText.text = "초당 공격력 : " + _frog.PerSecondPlus;
     }
     public void Shop1()
     {
