@@ -30,11 +30,11 @@ public class Frog : MonoBehaviour, IPointerClickHandler
     public void Update()
     {
         // Clicker
-        ScoreText.text = "Score: $ " + (int)CurrentScore;
+        ScoreText.text = "Score: $ " + ((int)CurrentScore );
         ScoreIncreasedPerSecond = PerSecondPlus * Time.deltaTime;
         CurrentScore = CurrentScore + ScoreIncreasedPerSecond;
         TouchCount.text = "Touch Count: " + Touch.ToString();
-        //plusText.text = "+ " + HitPower;
+
     }
 
     public void OnPointerClick(PointerEventData eventData)

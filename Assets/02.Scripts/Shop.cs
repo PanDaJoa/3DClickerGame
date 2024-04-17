@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -45,8 +46,8 @@ public class Shop : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI AllDamageText;
     public TextMeshProUGUI AllPerSecondPowerText;
 
-    public float AttackTime;
-    public float CoolTime;
+    public float AutoAttack = 60f;
+    private bool isAutoAttack = false;
 
     private Frog _frog;
     public void Start()
@@ -65,14 +66,12 @@ public class Shop : MonoBehaviour, IPointerClickHandler
 
         // ItemShop
         ItemShop1Text.text = "터치점수 X 2 " + ItemShop1Prize.ToString("F2") + " $";
-        ItemShop2Text.text = "초당 공격력 +1: " + ItemShop2Prize.ToString("F2") + " $";
-        string space = "                      ";
+        ItemShop2Text.text = "초당 공격력 +1: " + ItemShop2Prize.ToString("F2") + " $";    
         ItemShop3Text.text = "초당 터치공격력의 2배 자동공격 1분: "+ ItemShop3Prize.ToString("F2") + " $";
 
 
         AllDamageText.text = "총 공격력 : " + _frog.HitPower;
         AllPerSecondPowerText.text = "초당 공격력 : " + _frog.PerSecondPlus;
-
 
     }
     public void Shop1()
@@ -120,33 +119,37 @@ public class Shop : MonoBehaviour, IPointerClickHandler
     }
     public void ItemShop3()
     {
-        if (_frog.CurrentScore >= ItemShop3Prize)
+        if (!_frog) return;
+        
+        if (!isAutoAttack)
         {
-            if (CoolTime <= 0f)
+            if ((_frog.CurrentScore >= ItemShop3Prize))
             {
                 _frog.CurrentScore -= ItemShop3Prize;
-                _frog.PerSecondPlus += _frog.HitPower * 2;    // 공격력의 두배
                 ItemShop3Prize *= 5;
 
-                CoolTime = 5f; 
+                StartCoroutine(MoneyUP());
+
+                isAutoAttack = true;
+
             }
         }
-
-        if (CoolTime > 0f)
-        {
-            CoolTime -= Time.deltaTime;
-
-            if (CoolTime <= 0f)
-            {
-                CoolTime = 0f;
-            }
-        }
-
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         
+    }
+    IEnumerator MoneyUP()
+    {
+        for(int i  = 0; i < AutoAttack; i++) 
+        {
+            _frog.CurrentScore += _frog.HitPower * 2;
+
+            yield return new WaitForSeconds(1);
+        }
+
+        isAutoAttack = false;
     }
 
 }
