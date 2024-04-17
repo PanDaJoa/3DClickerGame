@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ClickEffect : MonoBehaviour
 {
     public TextMeshProUGUI PowerText;
-    
+    public FeverGauge _FeverGauge;
 
     public GameObject canvas;
     public int x, y, z;
@@ -16,6 +16,7 @@ public class ClickEffect : MonoBehaviour
     public int speed;
 
     private Frog frog;
+    private float _lastHitPower;
     void Start()
     {
         Timer = 0;
@@ -38,19 +39,24 @@ public class ClickEffect : MonoBehaviour
         {
             PowerText.raycastTarget = false;
         }
+        _lastHitPower = frog.HitPower;
     }
 
     void Update()
     {
         Timer += Time.deltaTime;
 
-        if (Timer >= 1f)
-        {
+        if (Timer >= 1f) 
+        { 
             Destroy(this.gameObject);
         }
 
-        transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime * speed, 0);
         PowerText.text = "+ " + frog.HitPower;
 
+         
+
+
+         transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime * speed, 0);
+        
     }
 }

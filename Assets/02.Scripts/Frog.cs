@@ -11,13 +11,14 @@ public class Frog : MonoBehaviour, IPointerClickHandler
 
     // Clicker
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI TouchCount;
+    public int Touch;
     public float CurrentScore;
     public float HitPower;
     public float ScoreIncreasedPerSecond;
     public float PerSecondPlus;
 
     public GameObject plusObject;
-    private FeverGauge feverGauge;
     // public TextMeshProUGUI plusText;
 
 
@@ -25,17 +26,14 @@ public class Frog : MonoBehaviour, IPointerClickHandler
     {
         _animator = GetComponent<Animator>();
     }
-    private void Start()
-    {
-        feverGauge = FindObjectOfType<FeverGauge>();
-    }
+
     public void Update()
     {
         // Clicker
         ScoreText.text = "Score: $ " + (int)CurrentScore;
         ScoreIncreasedPerSecond = PerSecondPlus * Time.deltaTime;
         CurrentScore = CurrentScore + ScoreIncreasedPerSecond;
-
+        TouchCount.text = "Touch Count: " + Touch.ToString();
         //plusText.text = "+ " + HitPower;
     }
 
@@ -54,19 +52,10 @@ public class Frog : MonoBehaviour, IPointerClickHandler
 
         CurrentScore += HitPower;
 
+        Touch++;
+
         Quaternion rotatedRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180f, transform.rotation.eulerAngles.z);
         Instantiate(plusObject, transform.position, rotatedRotation);
-    }
-
-    IEnumerator Fly()
-    {
-        for(int i = 0; i <= 19; i++)
-        {
-            yield return new WaitForSeconds(0.01f);
-
-            plusObject.transform.position = new Vector3(plusObject.transform.position.x, plusObject.transform.position.y +2, 0);
-        }
-        plusObject.SetActive(false);
     }
 
     private float _upDurtioan = 0.1f;
@@ -106,6 +95,4 @@ public class Frog : MonoBehaviour, IPointerClickHandler
     {
         _animator.SetTrigger("Hit");
     }
-
- 
 }
