@@ -2789,7 +2789,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -218, y: -30}
+  m_AnchoredPosition: {x: -272, y: -30}
   m_SizeDelta: {x: 150, y: 21.2982}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &536541393
@@ -3821,7 +3821,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD130\uCE58\uC810\uC218 X 2: 100000$"
+  m_text: "\uCD1D \uACF5\uACA9\uB825 X 2: 100000$"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 29a6470cd4a625c45821af00440b142f, type: 2}
   m_sharedMaterial: {fileID: 6781082891442623861, guid: 29a6470cd4a625c45821af00440b142f, type: 2}
@@ -3932,8 +3932,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -218, y: -19}
-  m_SizeDelta: {x: 150, y: 24}
+  m_AnchoredPosition: {x: -272, y: -19}
+  m_SizeDelta: {x: 300, y: 24}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &753724904
 MonoBehaviour:
@@ -3955,7 +3955,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC5C5\uADF8\uB808\uC774\uB4DC \uC218 +0"
+  m_text: "\uC5C5\uADF8\uB808\uC774\uB4DC \uC218 +0 \uCD08\uB2F9\uACF5\uACA9\uB825
+    +0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 29a6470cd4a625c45821af00440b142f, type: 2}
   m_sharedMaterial: {fileID: 6781082891442623861, guid: 29a6470cd4a625c45821af00440b142f, type: 2}
@@ -4472,7 +4473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 58, y: -40}
+  m_AnchoredPosition: {x: 185, y: -40}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &871405335
@@ -5144,8 +5145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD130\uCE58\uACF5\uACA9\uB825\uC758 2\uBC30 \uC790\uB3D9\uACF5\uACA9
-    1\uBD84\n 100000$"
+  m_text: "\uCD1D \uACF5\uACA9\uB825 2\uBC30 \uC790\uB3D9\uACF5\uACA9 1\uBD84\n 100000$"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 29a6470cd4a625c45821af00440b142f, type: 2}
   m_sharedMaterial: {fileID: 6781082891442623861, guid: 29a6470cd4a625c45821af00440b142f, type: 2}
@@ -6577,7 +6577,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 58, y: -33}
+  m_AnchoredPosition: {x: 185, y: -33}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511495972
@@ -6724,27 +6724,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6324cdbd39a51d4299f1369b651897c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Shop1Prize: 25
+  Shop1Prize: 1
   Shop1Text: {fileID: 430868188}
-  Shop2Prize: 125
+  Shop2Prize: 1
   Shop2Text: {fileID: 766525842}
   Amount1Text: {fileID: 134282808}
   Amount1: 0
-  Amount1HitPower: 0
+  Amount1HitPower: 2
   Amount1PerSecondPlus: 0
   Amount2Text: {fileID: 1069325413}
   Amount2: 0
-  Amount2HitPower: 0
+  Amount2HitPower: 5
   Amount2PerSecondPlus: 0
-  ItemShop1Prize: 100000
+  ItemShop1Prize: 1
   ItemShop1Text: {fileID: 747267162}
   ItemShop2Prize: 1
   ItemShop2Text: {fileID: 1565717601}
   ItemShop3Prize: 1
   ItemShop3Text: {fileID: 992254005}
+  ItemAmount1Text: {fileID: 536541393}
+  ItemAmount1: 0
+  ItemAmount2Text: {fileID: 753724904}
+  ItemAmount2: 0
+  ItemAmount3Text: {fileID: 1995553527}
+  ItemAmount3: 0
   AllDamageText: {fileID: 623612299}
   AllPerSecondPowerText: {fileID: 802214818}
   AutoAttack: 5
+  HasTouchPowerDoubledItem: 0
 --- !u!1 &1565717599
 GameObject:
   m_ObjectHideFlags: 0

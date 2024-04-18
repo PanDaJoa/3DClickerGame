@@ -16,6 +16,7 @@ public class FeverGauge : MonoBehaviour
     public Slider FeverUI;
 
     public Frog _frog;
+    private Shop _shop;
 
     private void Start()
     {
@@ -40,9 +41,10 @@ public class FeverGauge : MonoBehaviour
             GaugeValue = Mathf.Clamp01(GaugeValue); // 0 ~ 1 사이로 클램프
 
             // 게이지가 0.95 미만인 경우에는 _frog.HitPower가 이미 2배가 되었다면 원래대로 돌아오도록 합니다.
-            if (GaugeValue < 0.95f && isHitPowerDouble)
+            if (GaugeValue < PowerDouble && isHitPowerDouble)
             {
                 _frog.HitPower /= 2f;
+
                 isHitPowerDouble = false;
             }
 
